@@ -1,0 +1,6 @@
+<h1>Welcome to IT Helpdesk</h1>
+<% if user_signed_in? %>
+  <p><%= link_to 'View My Tickets', tickets_path, class: 'btn' %></p>
+<% else %>
+  <p><%= link_to 'Login', new_user_session_path, class: 'btn' %></p>
+<% end %>

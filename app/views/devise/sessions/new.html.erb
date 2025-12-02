@@ -1,0 +1,50 @@
+<div class="auth-card">
+  <h2 class="auth-title">Login</h2>
+  <%= form_with scope: :user, url: session_path(:user), class: "auth-form" do |f| %>
+    <div class="form-group">
+      <label>Username:</label>
+      <%= f.email_field :email, autofocus: true, class: "input" %>
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <%= f.password_field :password, autocomplete: "current-password", class: "input" %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Login", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+<style>
+  .auth-card {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .auth-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .form-group {
+    margin-bottom: 15px;
+  }
+  .input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .btn-primary {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+</style>
