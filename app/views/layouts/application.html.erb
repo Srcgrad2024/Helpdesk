@@ -7,28 +7,33 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="theme-orange">
+
+    <header class="app-header">
+      <h1 class="brand">IT Helpdesk</h1>
+      <div class="logo-placeholder">&lt;Logo&gt;</div>
+    </header>
 
     <nav class="nav">
       <% if user_signed_in? %>
-        <%= link_to "My Tickets", tickets_path, class: "nav-link" %>      
+        <%#= link_to "My Tickets", tickets_path, class: "nav-link" %>      
         <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-      <% else %>
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <%= link_to "Register", new_user_registration_path, class: "nav-link" %>      
+      
+        <%# This is a comment and will not be rendered %>
+        <%# else %>
+        <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
+        <%#= link_to "Register", new_user_registration_path, class: "nav-link" %>     
+      
       <% end %>
 
       <% if user_signed_in? && current_user.admin? %>
         <%= link_to "Admin Dashboard", admin_dashboard_path, class: "nav-link" %>
       <% end %>
     </nav>
-
-  </head>
-  <body class="theme-orange">
-    <header class="app-header">
-      <h1 class="brand">IT Helpdesk</h1>
-      <div class="logo-placeholder">&lt;Logo&gt;</div>
-    </header>
-
+    
     <main class="container">
       <% if notice %><p class="flash notice"><%= notice %></p><% end %>
       <% if alert %><p class="flash alert"><%= alert %></p><% end %>
