@@ -18,22 +18,24 @@
     </header>
 
     <nav class="nav">
-      <% if user_signed_in? %>
-        <%#= link_to "My Tickets", tickets_path, class: "nav-link" %>      
-        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-      
-        <%# This is a comment and will not be rendered %>
-        <%# else %>
-        <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-        <%#= link_to "Register", new_user_registration_path, class: "nav-link" %>     
-      
+      <% if user_signed_in? %>           
+        <%= link_to "Home", root_path %>
+        <%= link_to "My Tickets", tickets_path %>        
+        <%= link_to "Settings", edit_user_registration_path %>
+        <%= link_to "About Us", "#" %>
       <% end %>
 
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to "Admin Dashboard", admin_dashboard_path, class: "nav-link" %>
+        <%= link_to "Admin Dashboard", admin_dashboard_path %>
       <% end %>
     </nav>
-    
+
+    <nav class="nav1">
+      <% if user_signed_in? %>              
+        <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }%>
+      <% end %>
+    </nav>
+
     <main class="container">
       <% if notice %><p class="flash notice"><%= notice %></p><% end %>
       <% if alert %><p class="flash alert"><%= alert %></p><% end %>

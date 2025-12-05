@@ -1,37 +1,32 @@
-<%= form_with(model: ticket) do |form| %>
-  <% if ticket.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(ticket.errors.count, "error") %> prohibited this ticket from being saved:</h2>
-
-      <ul>
-        <% ticket.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+<%= form_with(model: ticket, local: true) do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "Summary:" %>
+    <%= f.text_field :title, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.textarea :description %>
+  <div class="form-group">
+    <%= f.label :category, "Category:" %>
+    <%= f.select :category, ["Hardware", "Software", "Network", "Other"], prompt: "<select category>", class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :status, style: "display: block" %>
-    <%= form.text_field :status %>
+  <div class="form-group">
+    <%= f.label :sub_category, "Sub-category:" %>
+    <%= f.select :sub_category, ["Laptop", "Printer", "Email", "Wi-Fi"], prompt: "<select category>", class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
+  <div class="form-group">
+    <label>Impact Other(s):</label><br>
+    <%= f.radio_button :impact_others, true %> Yes
+    <%= f.radio_button :impact_others, false %> No
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="form-group">
+    <%= f.label :description, "Description:" %>
+    <%= f.text_area :description, class: "input", rows: 5 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Submit", class: "btn btn-primary" %>
+    <%= link_to "Cancel", tickets_path, class: "btn btn-secondary" %>
   </div>
 <% end %>
