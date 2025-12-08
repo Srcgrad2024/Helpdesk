@@ -52,8 +52,9 @@ body.theme-orange {
 /* Flash messages */
 .flash { margin: 8px 0; padding: 10px; border-radius: 6px; }
 .flash.notice { background: #eef7ff; }
+.flash.success { background: #e6ffed; }
 .flash.alert { background: #ffecec; }
-/*.flash.success { background: #e6ffed; }*/
+
 
 /* Navigation links */
 .nav { margin-top: 12px; text-align: right; margin-right: 10px; }
@@ -63,3 +64,10 @@ body.theme-orange {
 .nav1 { margin-top: 12px; text-align: left; margin-left: 10px; }
 .nav-link1 { margin: 0 8px; color: #555; }
 .nav-link1:hover { color: #222; }
+
+.hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: #888;
+}

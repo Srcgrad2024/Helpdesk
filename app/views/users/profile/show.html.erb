@@ -1,0 +1,15 @@
+<h1 class="section-title">Profile</h1>
+
+<div class="profile-card">  
+  <div class="profile-fields">   
+    <p><strong>Name:</strong> <%= current_user.name %></p>
+    <p><strong>Surname:</strong> <%= current_user.surname %></p>
+    <p><strong>Contact:</strong> <%= current_user.contact %></p>
+    <p><strong>Email:</strong> <%= current_user.email %></p>
+  </div>
+</div>
+
+<div class="profile-actions">
+  <br>
+  <%= link_to "Edit", edit_profile_path, class: "btn btn-primary" %>
+</div>

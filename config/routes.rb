@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :tickets
+  resource :profile, only: [:show, :edit, :update], controller: 'users/profile'
   devise_for :users
   root 'home#index'
   
