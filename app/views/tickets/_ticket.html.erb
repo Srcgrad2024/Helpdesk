@@ -14,10 +14,8 @@
     <%= ticket.status %>
   </div>
 
-  <%# This is a comment and will not be rendered %>
-  <%#div
-    <strong>User:</strong>
-    <%= ticket.user_id %>
-  </div%>
+  <div>
+    <strong>Created At:</strong>
+    <%= ticket.created_at.strftime("%B %d, %Y %H:%M") %>
 
 </div>

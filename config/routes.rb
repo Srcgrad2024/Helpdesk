@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resource :profile, only: [:show, :edit, :update], controller: 'users/profile'
   devise_for :users
   root 'home#index'
+  get 'about', to: 'pages#about', as: :about
   
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

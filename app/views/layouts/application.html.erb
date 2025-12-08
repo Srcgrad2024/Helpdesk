@@ -23,7 +23,7 @@
         <%= link_to "My Tickets", tickets_path %>
         <%= link_to "Profile", profile_path %>
         <%= link_to "Settings", edit_user_registration_path %>
-        <%= link_to "About Us", "#" %>
+        <%= link_to "About Us", about_path %>
       <% end %>
 
       <% if user_signed_in? && current_user.admin? %>
