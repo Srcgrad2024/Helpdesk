@@ -25,6 +25,11 @@
     <%= f.text_area :description, class: "input", rows: 5 %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :status, "Status:" %>
+    <%= f.select :status, ["Open", "In Progress", "Resolved", "Closed"], prompt: "<select status>", class: "input" %>
+  </div>
+
   <div class="form-actions">
     <%= f.submit "Submit", class: "btn btn-primary" %>
     <%= link_to "Cancel", tickets_path, class: "btn btn-secondary" %>

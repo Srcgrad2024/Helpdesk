@@ -1,8 +1,15 @@
 <h1>Welcome to IT Helpdesk</h1>
 <% if user_signed_in? %>
-  <p><%= link_to 'View My Tickets', tickets_path, class: 'btn' %></p>
+  <p><%= link_to 'View My Tickets', tickets_path, class: 'btn btn-primary' %></p>
   <% else %>
     <p><%= link_to 'Login', new_user_session_path, class: 'btn' %></p> 
     <p><%= link_to "Register", new_user_registration_path, class: 'btn' %></p>
-  
 <% end %>
+
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "View All Tickets", admin_tickets_path, class: 'btn btn-primary' %>
+<% end %>
+<br>
+<br>
+<br>
+<p>Need help? Contact our support team at <a href="mailto:support@ithelpdesk.com">support@srcsolutions.com</a></p>

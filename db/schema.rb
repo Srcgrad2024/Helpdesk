@@ -18,7 +18,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_08_095515) do
     t.boolean "impact_others"
     t.string "status"
     t.string "sub_category"
-    t.string "title"
+    t.string "title" #summary renamed to title
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_tickets_on_user_id"

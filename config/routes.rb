@@ -18,7 +18,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")  
   
   namespace :admin do
-  get 'dashboard', to: 'dashboard#index'
+    get 'dashboard', to: 'dashboard#index'
   end
 
+  namespace :admin do
+    resources :tickets, only: [:index, :edit, :update]
+  end
+  
 end

@@ -1,0 +1,28 @@
+<h1>Submitted Tickets</h1>
+
+<div class="ticket-controls">
+  <%= form_with url: admin_tickets_path, method: :get, local: true do %>
+    <%= text_field_tag :search, params[:search], class: "input" %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class="ticket-list">
+  <% @tickets.each do |ticket| %>
+    <div class="ticket-card">
+      <p><strong>Ticket #<%= ticket.id %></strong></p>
+      <p><strong>Summary:</strong> <%= ticket.title %></p>
+      <p><strong>Status:</strong> <%= ticket.status %></p>
+      <p><strong>User:</strong> <%= ticket.user.email %></p>
+      <p><strong>Created At:</strong> <%= ticket.created_at %></p>
+
+      <div class="ticket-actions">
+        <%= check_box_tag "close_ticket_#{ticket.id}" %> Close
+        <%= link_to "Add Comment", edit_admin_ticket_path(ticket), class: "btn btn-small" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>
+<footer class="footer">SRC Solutions @ 2025</footer>
