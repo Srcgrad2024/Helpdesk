@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :tickets, only: [:index, :edit, :update]
+    resources :tickets, only: [:index, :edit, :update] do
+      resources :comments, only: [:create]
+    end
   end
   
 end

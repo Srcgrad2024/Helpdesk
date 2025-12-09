@@ -14,12 +14,13 @@ body.theme-orange {
   font-size: 32px; margin: 0 0 4px 0; font-weight: 700;
 }
 .logo-placeholder {
-  color: #888; font-size: 16px; margin-top: 4px;
+  color: #888; margin-top: 4px;
+   max-width: 200px; max-height: 100x;
 }
 
 /* Centered container */
 .container {
-  max-width: 420px; margin: 24px auto; padding: 0 16px;
+  max-width: 600px; margin: 24px auto; padding: 0 16px;
 }
 
 /* Auth card styling */
@@ -111,7 +112,13 @@ body.theme-orange {
 /* View all tickets page */
 .ticket-controls {
   margin-bottom: 16px;
-  text-align: right;
+  text-align: left;
+}
+
+.ticket-controls select {
+  padding: 6px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .ticket-list {
@@ -134,6 +141,29 @@ body.theme-orange {
   gap: 12px;
   align-items: center;
 }
+
+/* Comments card */
+.ticket-comments {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #ddd;
+}
+
+.ticket-comments h4 {
+  margin-bottom: 8px;
+  color: #f37c20;
+}
+
+.ticket-comments p {
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.ticket-comments textarea {
+  width: 100%;
+  margin-bottom: 8px;
+}
+
 
 
 

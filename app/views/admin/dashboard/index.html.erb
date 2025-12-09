@@ -7,10 +7,13 @@
   <p><strong>Active Users:</strong> <%= @active_users %></p>
 </div>
 
-<table>
+
+<br><h2>Recent Tickets</h2>
+<table class="contact-table">
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Ticket # </th>
+      <th>Summary</th>
       <th>Status</th>
       <th>User</th>
       <th>Created At</th>
@@ -19,10 +22,11 @@
   <tbody>
     <% @tickets.each do |ticket| %>
       <tr>
+        <td><%= ticket.id %></td>
         <td><%= ticket.title %></td>
         <td><%= ticket.status %></td>
         <td><%= ticket.user.email %></td>
-        <td><%= ticket.created_at.strftime("%d %b %Y") %></td>
+        <td><%= ticket.created_at.strftime("%B %d, %Y %H:%M") %></td>
       </tr>
     <% end %>
   </tbody>

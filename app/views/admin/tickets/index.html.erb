@@ -3,7 +3,12 @@
 <div class="ticket-controls">
   <%= form_with url: admin_tickets_path, method: :get, local: true do %>
     <%= text_field_tag :search, params[:search], class: "input" %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
+    <p><%= submit_tag "Search", class: "btn btn-primary" %></p>
+  <% end %>
+
+  <%= form_with url: admin_tickets_path, method: :get, local: true do %>
+    <%= label_tag :sort, "Sort by:" %>
+    <%= select_tag :sort, options_for_select([["Status", "status"], ["Creation Date", "created_at"]], params[:sort]), onchange: "this.form.submit();" %>
   <% end %>
 </div>
 
@@ -11,15 +16,28 @@
   <% @tickets.each do |ticket| %>
     <div class="ticket-card">
       <p><strong>Ticket #<%= ticket.id %></strong></p>
-      <p><strong>Summary:</strong> <%= ticket.title %></p>
+      <p><strong>Description:</strong> <%= ticket.description %></p>
       <p><strong>Status:</strong> <%= ticket.status %></p>
       <p><strong>User:</strong> <%= ticket.user.email %></p>
-      <p><strong>Created At:</strong> <%= ticket.created_at %></p>
+      <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%B %d, %Y %H:%M") %></p>
 
-      <div class="ticket-actions">
-        <%= check_box_tag "close_ticket_#{ticket.id}" %> Close
-        <%= link_to "Add Comment", edit_admin_ticket_path(ticket), class: "btn btn-small" %>
-      </div>
+        <div class="ticket-actions">
+        <%= form_with model: ticket, url: admin_ticket_path(ticket), method: :patch, local: true do |f| %>
+            <%= f.label :status, "Status:" %>
+            <%= f.select :status, ["New", "Open", "In Progress", "Resolved", "Closed"], {}, onchange: "this.form.submit();" %>
+            <% end %>
+        </div>
+  
+        <div class="ticket-comments">
+        <h4>Comments:</h4>
+        <% ticket.comments.each do |comment| %>
+            <p><%= comment.user.email %>: <%= comment.created_at %></p><p><%= comment.body %> </p>
+            <% end %>
+        <%= form_with model: [ :admin, ticket, Comment.new ], local: true do |f| %>
+            <%= f.text_area :body, rows: 2, placeholder: "Add a comment...", class: "input" %>
+            <%= f.submit "Add Comment", class: "btn btn-primary" %>
+            <% end %>
+        </div>
     </div>
   <% end %>
 </div>

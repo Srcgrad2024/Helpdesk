@@ -10,15 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_08_095515) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_09_125542) do
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.integer "ticket_id", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "tickets", force: :cascade do |t|
     t.string "category"
     t.datetime "created_at", null: false
     t.text "description"
     t.boolean "impact_others"
-    t.string "status"
+    t.string "status", default: "New"
     t.string "sub_category"
-    t.string "title" #summary renamed to title
+    t.string "title"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_tickets_on_user_id"
@@ -40,5 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_08_095515) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "comments", "tickets"
+  add_foreign_key "comments", "users"
   add_foreign_key "tickets", "users"
 end
