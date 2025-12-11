@@ -44,6 +44,15 @@ body.theme-orange {
 }
 .btn-primary:hover { background: #e66f16; }
 
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-top: 8px;
+}
+
 /* Footer bar with white text on orange */
 .app-footer {
   background: #f37c20; color: #fff; text-align: center;
@@ -163,7 +172,6 @@ body.theme-orange {
   width: 100%;
   margin-bottom: 8px;
 }
-
 
 
 

@@ -15,32 +15,33 @@
 <div class="ticket-list">
   <% @tickets.each do |ticket| %>
     <div class="ticket-card">
-      <p><strong>Ticket #<%= ticket.id %></strong></p>
+      <p><strong>Ticket #<%= ticket.id %></strong></p>      
       <p><strong>Description:</strong> <%= ticket.description %></p>
-      <p><strong>Status:</strong> <%= ticket.status %></p>
-      <p><strong>User:</strong> <%= ticket.user.email %></p>
+      <p><strong>Category:</strong> <%= ticket.category %></p>
+      <p><strong>Sub-Category:</strong> <%= ticket.sub_category %></p>
+      <p><strong>Impact Other(s):</strong> <%= ticket.impact_others %></p>
+      <p><strong>Submitted by:</strong> <%= ticket.user.email %></p>
       <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%B %d, %Y %H:%M") %></p>
 
-        <div class="ticket-actions">
+      <div class="ticket-actions">
         <%= form_with model: ticket, url: admin_ticket_path(ticket), method: :patch, local: true do |f| %>
-            <%= f.label :status, "Status:" %>
-            <%= f.select :status, ["New", "Open", "In Progress", "Resolved", "Closed"], {}, onchange: "this.form.submit();" %>
-            <% end %>
-        </div>
-  
-        <div class="ticket-comments">
+          <%= f.label :status, "Status:" %>
+          <%= f.select :status, ["New", "Open", "In Progress", "Resolved", "Closed"], {}, onchange: "this.form.submit();" %>
+        <% end %>
+      </div>
+
+      <div class="ticket-comments">
         <h4>Comments:</h4>
         <% ticket.comments.each do |comment| %>
             <p><%= comment.user.email %>: <%= comment.created_at %></p><p><%= comment.body %> </p>
-            <% end %>
+        <% end %>
         <%= form_with model: [ :admin, ticket, Comment.new ], local: true do |f| %>
-            <%= f.text_area :body, rows: 2, placeholder: "Add a comment...", class: "input" %>
-            <%= f.submit "Add Comment", class: "btn btn-primary" %>
-            <% end %>
-        </div>
+          <%= f.text_area :body, rows: 2, placeholder: "Add a comment...", class: "input" %>
+          <%= f.submit "Add Comment", class: "btn btn-primary" %>
+        <% end %> 
+        <%= link_to "Delete Ticket", admin_ticket_path(ticket), method: :delete, data: { confirm: "Are you sure you want to delete this ticket?" }, class: "btn btn-danger" %>   
+      </div>
+    
     </div>
   <% end %>
 </div>
-
-<br>
-<footer class="footer">SRC Solutions @ 2025</footer>
