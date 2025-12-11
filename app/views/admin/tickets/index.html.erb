@@ -19,7 +19,7 @@
       <p><strong>Description:</strong> <%= ticket.description %></p>
       <p><strong>Category:</strong> <%= ticket.category %></p>
       <p><strong>Sub-Category:</strong> <%= ticket.sub_category %></p>
-      <p><strong>Impact Other(s):</strong> <%= ticket.impact_others %></p>
+      <p><strong>Impact Other(s):</strong> <%= ticket.impact_others ? "Yes" : "No" %></p>
       <p><strong>Submitted by:</strong> <%= ticket.user.email %></p>
       <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%B %d, %Y %H:%M") %></p>
 
