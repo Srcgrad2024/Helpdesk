@@ -5,8 +5,8 @@ class Admin::DashboardController < ApplicationController
   def index
     @tickets = Ticket.all.order(created_at: :desc)
     @total_tickets = @tickets.count
-    @open_tickets = @tickets.where(status: 'open').count
-    @closed_tickets = @tickets.where(status: 'closed').count
+    @open_tickets = @tickets.where(status: ["Open"]).count
+    @closed_tickets = @tickets.where(status: ["Closed"]).count
     @active_users = User.joins(:tickets).distinct.count
   end
 
