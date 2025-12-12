@@ -8,6 +8,9 @@ class Admin::DashboardController < ApplicationController
     @open_tickets = @tickets.where(status: ["Open"]).count
     @closed_tickets = @tickets.where(status: ["Closed"]).count
     @active_users = User.joins(:tickets).distinct.count
+
+     #Group tickets by category
+    @tickets_by_category = Ticket.group(:category).count
   end
 
   private

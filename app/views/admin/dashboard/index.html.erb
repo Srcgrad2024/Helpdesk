@@ -31,5 +31,34 @@
     <% end %>
   </tbody>
 </table>
+<br>
 
 <h2>Tickets by Issue/Category</h2>
+<% @tickets_by_category.each do |category, count| %>
+  <h3><%= category %> (<%= count %>)</h3>
+
+  <table class="contact-table">
+    <thead>
+      <tr>
+        <th>Ticket #</th>
+        <th>Summary</th>
+        <th>Status</th>
+        <th>User</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% Ticket.where(category: category).each do |ticket| %>
+        <tr>
+          <td><%= ticket.id %></td>
+          <td><%= ticket.title %></td>
+          <td><%= ticket.status %></td>
+          <td><%= ticket.user.email %></td>
+          <td><%= ticket.created_at.strftime("%B %d, %Y %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
