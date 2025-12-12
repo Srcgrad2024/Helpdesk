@@ -15,7 +15,8 @@
 <div class="ticket-list">
   <% @tickets.each do |ticket| %>
     <div class="ticket-card">
-      <p><strong>Ticket #<%= ticket.id %></strong></p>      
+      <p><strong>Ticket #<%= ticket.id %></strong></p>
+      <p><strong>Title/Summary:</strong> <%= ticket.title %></p>      
       <p><strong>Description:</strong> <%= ticket.description %></p>
       <p><strong>Category:</strong> <%= ticket.category %></p>
       <p><strong>Sub-Category:</strong> <%= ticket.sub_category %></p>

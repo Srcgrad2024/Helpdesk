@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_09_125542) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_11_235432) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_09_125542) do
     t.string "category"
     t.datetime "created_at", null: false
     t.text "description"
-    t.boolean "impact_others"
+    t.boolean "impact_others", default: false
     t.string "status", default: "New"
     t.string "sub_category"
     t.string "title"

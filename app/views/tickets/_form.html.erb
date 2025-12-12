@@ -1,17 +1,28 @@
+<% if ticket.errors.any? %>
+  <div class="error">
+    <h4>There were problem(s):</h4>
+    <ul>
+      <% ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <%= form_with(model: ticket, local: true) do |f| %>
   <div class="form-group">
-    <%= f.label :title, "Summary:" %>
+    <%= f.label :title, "Title/Summary:" %>
     <%= f.text_field :title, class: "input" %>
   </div>
 
   <div class="form-group">
     <%= f.label :category, "Category:" %>
-    <%= f.select :category, ["Hardware", "Software", "Network", "Other"], prompt: "<select category>", class: "input" %>
+    <%= f.select :category, ["Hardware", "Software", "Network", "Other"], prompt: "Select category", class: "input" %>
   </div>
 
   <div class="form-group">
     <%= f.label :sub_category, "Sub-category:" %>
-    <%= f.select :sub_category, ["Laptop", "Printer", "Email", "Wi-Fi"], prompt: "<select category>", class: "input" %>
+    <%= f.select :sub_category, ["Laptop", "Printer", "Email", "Wi-Fi"], prompt: "Select Sub-category", class: "input" %>
   </div>
 
   <div class="form-group">
