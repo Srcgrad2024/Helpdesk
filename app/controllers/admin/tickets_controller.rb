@@ -22,7 +22,7 @@ class Admin::TicketsController < ApplicationController
   end
 
 
-  
+  #sort functionality
   def index
     sort = params[:sort]
 
@@ -39,7 +39,7 @@ class Admin::TicketsController < ApplicationController
   private
 
   def ticket_params
-    params.require(:ticket).permit(:status)
+    params.require(:ticket).permit(:status, :destroy)
   end
 
   def authorize_admin!

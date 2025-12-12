@@ -40,7 +40,8 @@
           <%= f.text_area :body, rows: 2, placeholder: "Add a comment...", class: "input" %>
           <%= f.submit "Add Comment", class: "btn btn-primary" %>
         <% end %> 
-        <%= link_to "Delete Ticket", admin_ticket_path(ticket), method: :delete, data: { confirm: "Are you sure you want to delete this ticket?" }, class: "btn btn-danger" %>   
+        <%= link_to "Delete Ticket", ticket_path(ticket), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this ticket?" }, class: "btn btn-danger" %>
+         
       </div>
     
     </div>
