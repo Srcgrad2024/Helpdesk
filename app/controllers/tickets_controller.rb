@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
   def create
     @ticket = current_user.tickets.build(ticket_params)
     if @ticket.save
-      redirect_to @ticket, notice: 'Ticket created successfully.'
+      redirect_to @ticket, notice: "Ticket created successfully."
     else
       render :new, status: :unprocessable_entity
     end
@@ -22,7 +22,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to @ticket, notice: 'Ticket updated.'
+      redirect_to @ticket, notice: "Ticket updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket.destroy
-    redirect_to tickets_path, notice: 'Ticket deleted.'
+    redirect_to tickets_path, notice: "Ticket deleted."
   end
 
   private
@@ -40,7 +40,7 @@ class TicketsController < ApplicationController
   end
 
   def authorize_ticket!
-    redirect_to tickets_path, alert: 'Not authorized.' unless @ticket.user_id == current_user.id
+    redirect_to tickets_path, alert: "Not authorized." unless @ticket.user_id == current_user.id
   end
 
   def ticket_params

@@ -1,0 +1,27 @@
+<!-- Renders a bar chart showing the number of tickets per category -->
+<% counts = local_assigns[:category_counts] || @category_counts %>
+<div id="category-chart-container">
+  <canvas id="categoryChart"></canvas>
+</div>
+
+<script>
+  const ctx = document.getElementById('categoryChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: <%= raw @category_counts.keys.to_json %>,
+      datasets: [{
+        label: 'Tickets per Issue/Category',
+        data: <%= raw @category_counts.values.to_json %>,
+        backgroundColor: ['#f37c20', '#007bff', '#28a745', '#6c757d']
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+</script>

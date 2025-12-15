@@ -22,18 +22,18 @@ class Admin::TicketsController < ApplicationController
   end
 
 
-  #sort functionality
+  # sort functionality
   def index
     sort = params[:sort]
 
     @tickets = case sort
-               when "status"
+    when "status"
                  Ticket.order(:status)
-               when "created_at"
+    when "created_at"
                  Ticket.order(created_at: :desc)
-               else
+    else
                  Ticket.all
-               end
+    end
   end
 
   private
@@ -46,4 +46,3 @@ class Admin::TicketsController < ApplicationController
     redirect_to root_path, alert: "Access denied." unless current_user.admin?
   end
 end
-

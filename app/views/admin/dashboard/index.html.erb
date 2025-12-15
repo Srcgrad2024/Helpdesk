@@ -1,5 +1,14 @@
 <h1>Admin Dashboard</h1>
 
+<!-- Turbo Stream broadcasts updates whenever a ticket changes -->
+<%= turbo_stream_from "dashboard" %>
+
+<!-- wraps the chart --->
+<%= turbo_frame_tag "category_chart" do %>
+  <%= render "category_chart" %>
+<% end %>
+
+<br>
 <div class="stats">
   <p><strong>Total Tickets:</strong> <%= @total_tickets %></p>
   <p><strong>Open Tickets:</strong> <%= @open_tickets %></p>
@@ -7,7 +16,7 @@
   <p><strong>Active Users:</strong> <%= @active_users %></p>
 </div>
 
-
+<!-- Recent (5) tickets table -->
 <br><h2>Recent Tickets</h2>
 <table class="contact-table">
   <thead>
@@ -20,7 +29,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @tickets.each do |ticket| %>
+    <% @tickets.limit(5).each do |ticket| %>
       <tr>
         <td><%= ticket.id %></td>
         <td><%= ticket.title %></td>
@@ -33,6 +42,7 @@
 </table>
 <br>
 
+<!-- Tickets grouped by category -->
 <h2>Tickets by Issue/Category</h2>
 <% @tickets_by_category.each do |category, count| %>
   <h3><%= category %> (<%= count %>)</h3>
