@@ -1,4 +1,6 @@
+# Controller for the admin dashboard, providing an overview of tickets and user activity.
 class Admin::DashboardController < ApplicationController
+  # Ensure user is authenticated and is an admin
   before_action :authenticate_user!
   before_action :authorize_admin!
 
@@ -15,6 +17,7 @@ class Admin::DashboardController < ApplicationController
     @category_counts = Ticket.group(:category).count.presence || {}
   end
 
+  # Private methods for authorization
   private
 
   # Ensure the user is an admin

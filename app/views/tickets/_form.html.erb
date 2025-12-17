@@ -1,3 +1,5 @@
+<!-- Form to create or edit a ticket -->
+<!-- Display validation errors set in ticket.rb file, if any -->
 <% if ticket.errors.any? %>
   <div class="error">
     <h4>There were problem(s):</h4>
@@ -9,6 +11,7 @@
   </div>
 <% end %>
 
+<!-- Ticket form -->
 <%= form_with(model: ticket, local: true) do |f| %>
   <div class="form-group">
     <%= f.label :title, "Title/Summary:" %>

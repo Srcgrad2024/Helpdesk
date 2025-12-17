@@ -1,9 +1,10 @@
+<!-- Show selected ticket details -->
 <%= render @ticket %>
 <br>
 <div>
   <%= link_to "Edit", edit_ticket_path(@ticket), class: "btn btn-primary" %>
   <%= link_to "Back to tickets", tickets_path %>
 
-  <%# This line wont be executed%>
+  <!-- This line wont be executed as deleting tickets is disabled for the users-->
   <%#= button_to "Destroy this ticket", @ticket, method: :delete %>
 </div>

@@ -1,4 +1,7 @@
+<!-- Home page, for page user is directed after login -->
 <h1>Welcome to IT Helpdesk</h1>
+
+<!-- If user is signed in, show link to their tickets -->
 <% if user_signed_in? %>
   <%= link_to 'View My Tickets', tickets_path, class: 'btn btn-primary' %>
   <% else %>
@@ -6,6 +9,7 @@
     <p><%= link_to "Register", new_user_registration_path, class: 'btn' %></p>
 <% end %>
 
+<!-- If user is admin, show link to admin panel to view all tickets -->
 <% if user_signed_in? && current_user.admin? %>
   <p><%= link_to "View All Tickets", admin_tickets_path, class: 'btn btn-primary' %></p>
 <% end %>

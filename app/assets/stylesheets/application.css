@@ -1,3 +1,4 @@
+/* CSS styles for the application */
 /* Basic reset */
 * { box-sizing: border-box; }
 body.theme-orange {
@@ -37,6 +38,8 @@ body.theme-orange {
   width: 100%; padding: 10px 12px; border: 1px solid #ccc;
   border-radius: 6px; font-size: 14px; background: #fff;
 }
+
+/* Action buttons */
 .actions { text-align: center; }
 .btn { display: inline-block; padding: 10px 16px; border-radius: 6px; text-decoration: none; }
 .btn-primary {
@@ -44,6 +47,7 @@ body.theme-orange {
 }
 .btn-primary:hover { background: #e66f16; }
 
+/* Danger button */
 .btn-danger {
   background-color: #dc3545;
   color: white;

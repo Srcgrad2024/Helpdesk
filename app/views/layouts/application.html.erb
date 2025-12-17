@@ -1,3 +1,4 @@
+<!-- Base format/layout HTML with Ruby embedded template for the application/all pages -->
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <%= javascript_importmap_tags %>
-    <!-- renders a bar chart using Chart.js -->
+    <!-- renders a bar chart (category) using Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
 
@@ -19,6 +20,7 @@
       <%= image_tag 'logo_placeholder.png', class: 'logo-placeholder' %>
     </header>
 
+    <!-- Navigation bar with conditional links based on user sign-in status and role -->
     <nav class="nav">
       <% if user_signed_in? %>           
         <%= link_to "Home", root_path %>
@@ -39,6 +41,7 @@
       <% end %>
     </nav>
 
+    <!-- Main content area displaying flash messages and yielding to specific page content -->
     <main class="container">
       <% if notice %><p class="flash notice"><%= notice %></p><% end %>
       <% if alert %><p class="flash alert"><%= alert %></p><% end %>

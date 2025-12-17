@@ -1,9 +1,12 @@
-<!-- Renders a bar chart showing the number of tickets per category -->
+<!-- Code to render a bar chart showing the number of tickets per category -->
+<!-- Expects a local variable `category_counts` which is a hash with category names as keys and ticket counts as values -->
 <% counts = local_assigns[:category_counts] || @category_counts || {} %>
+
 <div id="category-chart-container">
   <canvas id="categoryChart"></canvas>
 </div>
 
+<!-- Script to initialize Chart.js bar chart and update it dynamically with category counts -->
 <script>
   const ctx = document.getElementById('categoryChart');
 

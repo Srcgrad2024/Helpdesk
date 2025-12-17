@@ -1,4 +1,6 @@
+# Controller for managing tickets for the users
 class TicketsController < ApplicationController
+  # Ensure user is authenticated for all actions 
   before_action :authenticate_user!
   before_action :set_ticket, only: %i[show edit update destroy]
   before_action :authorize_ticket!, only: %i[show edit update destroy]
@@ -35,15 +37,19 @@ class TicketsController < ApplicationController
 
   private
 
+  # Find ticket based on ticket ID
   def set_ticket
     @ticket = Ticket.find(params[:id])
   end
 
+  # Ensure the current user owns the ticket
   def authorize_ticket!
     redirect_to tickets_path, alert: "Not authorized." unless @ticket.user_id == current_user.id
   end
 
+  # Permit only allowed paramenters (fields) to update/create tickets
   def ticket_params
-    params.require(:ticket).permit(:title, :description, :status, :category, :sub_category, :impact_others)
+    params.require(:ticket).permit(:title, :description, :status, :category, :sub_category, 
+    :impact_others)
   end
 end
