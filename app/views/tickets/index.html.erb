@@ -1,7 +1,7 @@
 <!-- View for displaying a list of tickets -->
 <% content_for :title, "Tickets" %>
 
-<h1>Tickets</h1>
+<h1>Tickets (<%= @tickets.count %>)</h1>
 
 <div class="ticket-list">  
     <% @tickets.each do |ticket| %>    

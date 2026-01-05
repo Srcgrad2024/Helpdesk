@@ -4,11 +4,6 @@ class Admin::TicketsController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_admin!
 
-  # List all tickets with sorting functionality
-  def index
-    @tickets = Ticket.includes(:user).order(created_at: :desc)
-  end
-
   # Update ticket status
   def update
     @ticket = Ticket.find(params[:id])
@@ -26,17 +21,26 @@ class Admin::TicketsController < ApplicationController
     redirect_to admin_tickets_path, notice: "Ticket deleted."
   end
 
-  # Sorting tickets based on parameters
+  # Search/filter functionality for tickets. By title/summary, description, category, sub‑category or status
   def index
-    sort = params[:sort]
+    @tickets = Ticket.includes(:user)
 
-    @tickets = case sort
+    if params[:search].present?
+      q = "%#{params[:search].downcase}%"
+      @tickets = @tickets.where(
+        "LOWER(title) LIKE :q OR LOWER(description) LIKE :q OR LOWER(category) LIKE :q OR LOWER(sub_category) LIKE :q OR LOWER(status) LIKE :q",
+        q: q
+      )
+    end
+
+  # Sorting tickets based on parameters
+    case params[:sort]
     when "status"
-                 Ticket.order(:status)
+      @tickets = @tickets.order(:status)
     when "created_at"
-                 Ticket.order(created_at: :desc)
+      @tickets = @tickets.order(created_at: :desc)
     else
-                 Ticket.all
+      @tickets = @tickets.order(created_at: :desc)
     end
   end
 
